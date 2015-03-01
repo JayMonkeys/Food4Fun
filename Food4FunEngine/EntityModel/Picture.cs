@@ -16,6 +16,7 @@ namespace Food4FunEngine.EntityModel
     {
         public System.Guid PictureID { get; private set; }
         public string PictureUrl { get; set; }
+        public string PictureComment { get; set; }
     
         public virtual Menu Menu { get; set; }
         public virtual Dish Dish { get; set; }

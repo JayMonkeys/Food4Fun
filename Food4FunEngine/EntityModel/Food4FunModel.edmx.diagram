@@ -5,19 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="248f9c6018554efa928c866359877ba4" Name="Food4FunDiagram" >
-        <EntityTypeShape EntityType="Food4FunModel.Ingredient" Width="1.5" PointX="8" PointY="3.125" />
-        <EntityTypeShape EntityType="Food4FunModel.Dish" Width="1.5" PointX="3" PointY="3.125" />
-        <EntityTypeShape EntityType="Food4FunModel.Menu" Width="1.5" PointX="0.5" PointY="3.125" />
-        <EntityTypeShape EntityType="Food4FunModel.Picture" Width="1.5" PointX="3" PointY="0.5" />
+        <EntityTypeShape EntityType="Food4FunModel.Ingredient" Width="1.5" PointX="10.75" PointY="2.75" />
+        <EntityTypeShape EntityType="Food4FunModel.Dish" Width="1.5" PointX="3.375" PointY="3.125" />
+        <EntityTypeShape EntityType="Food4FunModel.Menu" Width="1.5" PointX="0.875" PointY="3.125" />
+        <EntityTypeShape EntityType="Food4FunModel.Picture" Width="1.5" PointX="3.375" PointY="0.5" />
         <AssociationConnector Association="Food4FunModel.PictureMenu" />
         <AssociationConnector Association="Food4FunModel.PictureDish" />
         <AssociationConnector Association="Food4FunModel.PictureIngredient" />
-        <EntityTypeShape EntityType="Food4FunModel.Recipe" Width="1.5" PointX="5.5" PointY="3.125" />
+        <EntityTypeShape EntityType="Food4FunModel.Recipe" Width="1.5" PointX="5.875" PointY="3.125" />
         <AssociationConnector Association="Food4FunModel.MenuDish" />
         <AssociationConnector Association="Food4FunModel.DishRecipe" />
-        <AssociationConnector Association="Food4FunModel.RecipeIngredient" />
-        <EntityTypeShape EntityType="Food4FunModel.Country" Width="1.5" PointX="5.5" PointY="6.125" />
+        <EntityTypeShape EntityType="Food4FunModel.Country" Width="1.5" PointX="5.875" PointY="6.125" />
         <AssociationConnector Association="Food4FunModel.CountryRecipe" />
+        <EntityTypeShape EntityType="Food4FunModel.AmountOf" Width="1.5" PointX="8.375" PointY="3.375" />
+        <InheritanceConnector EntityType="Food4FunModel.AmountOf" />
+        <AssociationConnector Association="Food4FunModel.RecipeAmountOf" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -25,11 +25,11 @@ namespace Food4FunEngine.EntityModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Ingredient> IngredientSet { get; set; }
         public virtual DbSet<Dish> DishSet { get; set; }
         public virtual DbSet<Menu> MenuSet { get; set; }
         public virtual DbSet<Picture> PictureSet { get; set; }
         public virtual DbSet<Recipe> RecipeSet { get; set; }
         public virtual DbSet<Country> CountrySet { get; set; }
+        public virtual DbSet<Ingredient> IngredientSet { get; set; }
     }
 }

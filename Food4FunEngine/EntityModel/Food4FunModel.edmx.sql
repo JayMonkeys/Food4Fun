@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/01/2015 20:48:24
+-- Date Created: 03/01/2015 23:22:34
 -- Generated from EDMX file: C:\Users\Kim Jan Andersen\Desktop\Food4Fun\Food4FunEngine\EntityModel\Food4FunModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [Food4FunDB];
+USE [Food4Fun];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -38,12 +38,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_DishRecipe_Recipe]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DishRecipe] DROP CONSTRAINT [FK_DishRecipe_Recipe];
 GO
-IF OBJECT_ID(N'[dbo].[FK_RecipeIngredient_Recipe]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RecipeIngredient] DROP CONSTRAINT [FK_RecipeIngredient_Recipe];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RecipeIngredient_Ingredient]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RecipeIngredient] DROP CONSTRAINT [FK_RecipeIngredient_Ingredient];
-GO
 IF OBJECT_ID(N'[dbo].[FK_CountryRecipe]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[RecipeSet] DROP CONSTRAINT [FK_CountryRecipe];
 GO
@@ -52,9 +46,6 @@ GO
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[IngredientSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[IngredientSet];
-GO
 IF OBJECT_ID(N'[dbo].[DishSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[DishSet];
 GO
@@ -70,30 +61,19 @@ GO
 IF OBJECT_ID(N'[dbo].[CountrySet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[CountrySet];
 GO
+IF OBJECT_ID(N'[dbo].[IngredientSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[IngredientSet];
+GO
 IF OBJECT_ID(N'[dbo].[MenuDish]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MenuDish];
 GO
 IF OBJECT_ID(N'[dbo].[DishRecipe]', 'U') IS NOT NULL
     DROP TABLE [dbo].[DishRecipe];
 GO
-IF OBJECT_ID(N'[dbo].[RecipeIngredient]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[RecipeIngredient];
-GO
 
 -- --------------------------------------------------
 -- Creating all tables
 -- --------------------------------------------------
-
--- Creating table 'IngredientSet'
-CREATE TABLE [dbo].[IngredientSet] (
-    [IngredientID] uniqueidentifier  NOT NULL,
-    [Name] nvarchar(max)  NOT NULL,
-    [Description] nvarchar(max)  NOT NULL,
-    [FatPr100g] decimal(18,0)  NOT NULL,
-    [CarbsPr100g1] decimal(18,0)  NOT NULL,
-    [ProteinPr100g2] decimal(18,0)  NOT NULL
-);
-GO
 
 -- Creating table 'DishSet'
 CREATE TABLE [dbo].[DishSet] (
@@ -105,7 +85,8 @@ GO
 -- Creating table 'MenuSet'
 CREATE TABLE [dbo].[MenuSet] (
     [MenuID] uniqueidentifier  NOT NULL,
-    [Name] nvarchar(max)  NOT NULL
+    [Name] nvarchar(max)  NOT NULL,
+    [MenuDescription] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -113,6 +94,7 @@ GO
 CREATE TABLE [dbo].[PictureSet] (
     [PictureID] uniqueidentifier  NOT NULL,
     [PictureUrl] nvarchar(max)  NOT NULL,
+    [PictureComment] nvarchar(max)  NOT NULL,
     [Menu_MenuID] uniqueidentifier  NULL,
     [Dish_DishID] uniqueidentifier  NULL,
     [Ingredient_IngredientID] uniqueidentifier  NULL
@@ -124,6 +106,7 @@ CREATE TABLE [dbo].[RecipeSet] (
     [RecipeID] uniqueidentifier  NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [WorkDescription] nvarchar(max)  NOT NULL,
+    [PrepTime] time  NOT NULL,
     [Country_CountryID] uniqueidentifier  NULL
 );
 GO
@@ -133,6 +116,26 @@ CREATE TABLE [dbo].[CountrySet] (
     [CountryID] uniqueidentifier  NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [ShortName] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'IngredientSet'
+CREATE TABLE [dbo].[IngredientSet] (
+    [IngredientID] uniqueidentifier  NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Description] nvarchar(max)  NOT NULL,
+    [FatPr100] decimal(18,0)  NOT NULL,
+    [CarbsPr100] decimal(18,0)  NOT NULL,
+    [ProteinPr100] decimal(18,0)  NOT NULL,
+    [MessureUnit] int  NOT NULL
+);
+GO
+
+-- Creating table 'IngredientSet_AmountOf'
+CREATE TABLE [dbo].[IngredientSet_AmountOf] (
+    [Amount] int IDENTITY(1,1) NOT NULL,
+    [IngredientID] uniqueidentifier  NOT NULL,
+    [Recipe_RecipeID] uniqueidentifier  NOT NULL
 );
 GO
 
@@ -150,22 +153,9 @@ CREATE TABLE [dbo].[DishRecipe] (
 );
 GO
 
--- Creating table 'RecipeIngredient'
-CREATE TABLE [dbo].[RecipeIngredient] (
-    [Recipes_RecipeID] uniqueidentifier  NOT NULL,
-    [Ingredients_IngredientID] uniqueidentifier  NOT NULL
-);
-GO
-
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
-
--- Creating primary key on [IngredientID] in table 'IngredientSet'
-ALTER TABLE [dbo].[IngredientSet]
-ADD CONSTRAINT [PK_IngredientSet]
-    PRIMARY KEY CLUSTERED ([IngredientID] ASC);
-GO
 
 -- Creating primary key on [DishID] in table 'DishSet'
 ALTER TABLE [dbo].[DishSet]
@@ -197,6 +187,18 @@ ADD CONSTRAINT [PK_CountrySet]
     PRIMARY KEY CLUSTERED ([CountryID] ASC);
 GO
 
+-- Creating primary key on [IngredientID] in table 'IngredientSet'
+ALTER TABLE [dbo].[IngredientSet]
+ADD CONSTRAINT [PK_IngredientSet]
+    PRIMARY KEY CLUSTERED ([IngredientID] ASC);
+GO
+
+-- Creating primary key on [IngredientID] in table 'IngredientSet_AmountOf'
+ALTER TABLE [dbo].[IngredientSet_AmountOf]
+ADD CONSTRAINT [PK_IngredientSet_AmountOf]
+    PRIMARY KEY CLUSTERED ([IngredientID] ASC);
+GO
+
 -- Creating primary key on [Menues_MenuID], [Dishes_DishID] in table 'MenuDish'
 ALTER TABLE [dbo].[MenuDish]
 ADD CONSTRAINT [PK_MenuDish]
@@ -207,12 +209,6 @@ GO
 ALTER TABLE [dbo].[DishRecipe]
 ADD CONSTRAINT [PK_DishRecipe]
     PRIMARY KEY CLUSTERED ([Dishes_DishID], [Recipes_RecipeID] ASC);
-GO
-
--- Creating primary key on [Recipes_RecipeID], [Ingredients_IngredientID] in table 'RecipeIngredient'
-ALTER TABLE [dbo].[RecipeIngredient]
-ADD CONSTRAINT [PK_RecipeIngredient]
-    PRIMARY KEY CLUSTERED ([Recipes_RecipeID], [Ingredients_IngredientID] ASC);
 GO
 
 -- --------------------------------------------------
@@ -312,30 +308,6 @@ ON [dbo].[DishRecipe]
     ([Recipes_RecipeID]);
 GO
 
--- Creating foreign key on [Recipes_RecipeID] in table 'RecipeIngredient'
-ALTER TABLE [dbo].[RecipeIngredient]
-ADD CONSTRAINT [FK_RecipeIngredient_Recipe]
-    FOREIGN KEY ([Recipes_RecipeID])
-    REFERENCES [dbo].[RecipeSet]
-        ([RecipeID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Ingredients_IngredientID] in table 'RecipeIngredient'
-ALTER TABLE [dbo].[RecipeIngredient]
-ADD CONSTRAINT [FK_RecipeIngredient_Ingredient]
-    FOREIGN KEY ([Ingredients_IngredientID])
-    REFERENCES [dbo].[IngredientSet]
-        ([IngredientID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_RecipeIngredient_Ingredient'
-CREATE INDEX [IX_FK_RecipeIngredient_Ingredient]
-ON [dbo].[RecipeIngredient]
-    ([Ingredients_IngredientID]);
-GO
-
 -- Creating foreign key on [Country_CountryID] in table 'RecipeSet'
 ALTER TABLE [dbo].[RecipeSet]
 ADD CONSTRAINT [FK_CountryRecipe]
@@ -349,6 +321,30 @@ GO
 CREATE INDEX [IX_FK_CountryRecipe]
 ON [dbo].[RecipeSet]
     ([Country_CountryID]);
+GO
+
+-- Creating foreign key on [Recipe_RecipeID] in table 'IngredientSet_AmountOf'
+ALTER TABLE [dbo].[IngredientSet_AmountOf]
+ADD CONSTRAINT [FK_RecipeAmountOf]
+    FOREIGN KEY ([Recipe_RecipeID])
+    REFERENCES [dbo].[RecipeSet]
+        ([RecipeID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_RecipeAmountOf'
+CREATE INDEX [IX_FK_RecipeAmountOf]
+ON [dbo].[IngredientSet_AmountOf]
+    ([Recipe_RecipeID]);
+GO
+
+-- Creating foreign key on [IngredientID] in table 'IngredientSet_AmountOf'
+ALTER TABLE [dbo].[IngredientSet_AmountOf]
+ADD CONSTRAINT [FK_AmountOf_inherits_Ingredient]
+    FOREIGN KEY ([IngredientID])
+    REFERENCES [dbo].[IngredientSet]
+        ([IngredientID])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- --------------------------------------------------

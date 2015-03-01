@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityModel\AmountOf.cs">
+      <DependentUpon>Food4FunModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\Country.cs">
       <DependentUpon>Food4FunModel.tt</DependentUpon>
     </Compile>
@@ -73,6 +76,9 @@
       <DependentUpon>Food4FunModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\Menu.cs">
+      <DependentUpon>Food4FunModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\MessureUnitEnum.cs">
       <DependentUpon>Food4FunModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\Picture.cs">

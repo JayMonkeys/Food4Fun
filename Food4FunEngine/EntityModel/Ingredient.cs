@@ -17,17 +17,16 @@ namespace Food4FunEngine.EntityModel
         public Ingredient()
         {
             this.Pictures = new HashSet<Picture>();
-            this.Recipes = new HashSet<Recipe>();
         }
     
         public System.Guid IngredientID { get; private set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public decimal FatPr100g { get; set; }
-        public decimal CarbsPr100g1 { get; set; }
-        public decimal ProteinPr100g2 { get; set; }
+        public decimal FatPr100 { get; set; }
+        public decimal CarbsPr100 { get; set; }
+        public decimal ProteinPr100 { get; set; }
+        public MessureUnitEnum MessureUnit { get; set; }
     
         public virtual ICollection<Picture> Pictures { get; set; }
-        public virtual ICollection<Recipe> Recipes { get; set; }
     }
 }

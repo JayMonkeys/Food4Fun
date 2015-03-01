@@ -6,15 +6,15 @@
     <edmx:StorageModels>
     <Schema Namespace="Food4FunModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="Food4FunModelStoreContainer">
-    <EntitySet Name="IngredientSet" EntityType="Food4FunModel.Store.IngredientSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="DishSet" EntityType="Food4FunModel.Store.DishSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MenuSet" EntityType="Food4FunModel.Store.MenuSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PictureSet" EntityType="Food4FunModel.Store.PictureSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RecipeSet" EntityType="Food4FunModel.Store.RecipeSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="CountrySet" EntityType="Food4FunModel.Store.CountrySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IngredientSet" EntityType="Food4FunModel.Store.IngredientSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IngredientSet_AmountOf" EntityType="Food4FunModel.Store.IngredientSet_AmountOf" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MenuDish" EntityType="Food4FunModel.Store.MenuDish" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="DishRecipe" EntityType="Food4FunModel.Store.DishRecipe" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="RecipeIngredient" EntityType="Food4FunModel.Store.RecipeIngredient" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="PictureMenu" Association="Food4FunModel.Store.PictureMenu">
       <End Role="Picture" EntitySet="PictureSet" />
       <End Role="Menu" EntitySet="MenuSet" />
@@ -43,30 +43,19 @@
       <End Role="Recipe" EntitySet="RecipeSet" />
       <End Role="DishRecipe" EntitySet="DishRecipe" />
     </AssociationSet>
-    <AssociationSet Name="FK_RecipeIngredient_Recipe" Association="Food4FunModel.Store.FK_RecipeIngredient_Recipe">
-      <End Role="Recipe" EntitySet="RecipeSet" />
-      <End Role="RecipeIngredient" EntitySet="RecipeIngredient" />
-    </AssociationSet>
-    <AssociationSet Name="FK_RecipeIngredient_Ingredient" Association="Food4FunModel.Store.FK_RecipeIngredient_Ingredient">
-      <End Role="Ingredient" EntitySet="IngredientSet" />
-      <End Role="RecipeIngredient" EntitySet="RecipeIngredient" />
-    </AssociationSet>
     <AssociationSet Name="CountryRecipe" Association="Food4FunModel.Store.CountryRecipe">
       <End Role="Country" EntitySet="CountrySet" />
       <End Role="Recipe" EntitySet="RecipeSet" />
     </AssociationSet>
+    <AssociationSet Name="RecipeAmountOf" Association="Food4FunModel.Store.RecipeAmountOf">
+      <End Role="Recipe" EntitySet="RecipeSet" />
+      <End Role="AmountOf" EntitySet="IngredientSet_AmountOf" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AmountOf_inherits_Ingredient" Association="Food4FunModel.Store.FK_AmountOf_inherits_Ingredient">
+      <End Role="Ingredient" EntitySet="IngredientSet" />
+      <End Role="AmountOf" EntitySet="IngredientSet_AmountOf" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="IngredientSet">
-    <Key>
-      <PropertyRef Name="IngredientID" />
-    </Key>
-    <Property Name="IngredientID" Type="uniqueidentifier" StoreGeneratedPattern="Computed" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="FatPr100g" Type="decimal" Nullable="false" />
-    <Property Name="CarbsPr100g1" Type="decimal" Nullable="false" />
-    <Property Name="ProteinPr100g2" Type="decimal" Nullable="false" />
-  </EntityType>
   <EntityType Name="DishSet">
     <Key>
       <PropertyRef Name="DishID" />
@@ -80,6 +69,7 @@
     </Key>
     <Property Name="MenuID" Type="uniqueidentifier" StoreGeneratedPattern="Computed" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MenuDescription" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="PictureSet">
     <Key>
@@ -87,6 +77,7 @@
     </Key>
     <Property Name="PictureID" Type="uniqueidentifier" StoreGeneratedPattern="Computed" Nullable="false" />
     <Property Name="PictureUrl" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PictureComment" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Menu_MenuID" Type="uniqueidentifier" Nullable="true" />
     <Property Name="Dish_DishID" Type="uniqueidentifier" Nullable="true" />
     <Property Name="Ingredient_IngredientID" Type="uniqueidentifier" Nullable="true" />
@@ -98,6 +89,7 @@
     <Property Name="RecipeID" Type="uniqueidentifier" StoreGeneratedPattern="Computed" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="WorkDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PrepTime" Type="time" Nullable="false" />
     <Property Name="Country_CountryID" Type="uniqueidentifier" Nullable="true" />
   </EntityType>
   <EntityType Name="CountrySet">
@@ -107,6 +99,26 @@
     <Property Name="CountryID" Type="uniqueidentifier" StoreGeneratedPattern="Computed" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ShortName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IngredientSet">
+    <Key>
+      <PropertyRef Name="IngredientID" />
+    </Key>
+    <Property Name="IngredientID" Type="uniqueidentifier" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FatPr100" Type="decimal" Nullable="false" />
+    <Property Name="CarbsPr100" Type="decimal" Nullable="false" />
+    <Property Name="ProteinPr100" Type="decimal" Nullable="false" />
+    <Property Name="MessureUnit" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IngredientSet_AmountOf">
+    <Key>
+      <PropertyRef Name="IngredientID" />
+    </Key>
+    <Property Name="Amount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IngredientID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Recipe_RecipeID" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="MenuDish">
     <Key>
@@ -123,14 +135,6 @@
     </Key>
     <Property Name="Dishes_DishID" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Recipes_RecipeID" Type="uniqueidentifier" Nullable="false" />
-  </EntityType>
-  <EntityType Name="RecipeIngredient">
-    <Key>
-      <PropertyRef Name="Recipes_RecipeID" />
-      <PropertyRef Name="Ingredients_IngredientID" />
-    </Key>
-    <Property Name="Recipes_RecipeID" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Ingredients_IngredientID" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <Association Name="PictureMenu">
     <End Role="Picture" Type="Food4FunModel.Store.PictureSet" Multiplicity="*" />
@@ -177,6 +181,18 @@
       </Principal>
       <Dependent Role="Recipe">
         <PropertyRef Name="Country_CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RecipeAmountOf">
+    <End Role="Recipe" Type="Food4FunModel.Store.RecipeSet" Multiplicity="1" />
+    <End Role="AmountOf" Type="Food4FunModel.Store.IngredientSet_AmountOf" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recipe">
+        <PropertyRef Name="RecipeID" />
+      </Principal>
+      <Dependent Role="AmountOf">
+        <PropertyRef Name="Recipe_RecipeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -228,27 +244,17 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_RecipeIngredient_Recipe">
-    <End Role="Recipe" Type="Food4FunModel.Store.RecipeSet" Multiplicity="1" />
-    <End Role="RecipeIngredient" Type="Food4FunModel.Store.RecipeIngredient" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Recipe">
-        <PropertyRef Name="RecipeID" />
-      </Principal>
-      <Dependent Role="RecipeIngredient">
-        <PropertyRef Name="Recipes_RecipeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RecipeIngredient_Ingredient">
-    <End Role="RecipeIngredient" Type="Food4FunModel.Store.RecipeIngredient" Multiplicity="*" />
-    <End Role="Ingredient" Type="Food4FunModel.Store.IngredientSet" Multiplicity="1" />
+  <Association Name="FK_AmountOf_inherits_Ingredient">
+    <End Role="Ingredient" Type="Food4FunModel.Store.IngredientSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AmountOf" Type="Food4FunModel.Store.IngredientSet_AmountOf" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Ingredient">
         <PropertyRef Name="IngredientID" />
       </Principal>
-      <Dependent Role="RecipeIngredient">
-        <PropertyRef Name="Ingredients_IngredientID" />
+      <Dependent Role="AmountOf">
+        <PropertyRef Name="IngredientID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -257,7 +263,6 @@
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Food4FunModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="Food4FunModelContainer" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="IngredientSet" EntityType="Food4FunModel.Ingredient" />
           <EntitySet Name="DishSet" EntityType="Food4FunModel.Dish" />
           <EntitySet Name="MenuSet" EntityType="Food4FunModel.Menu" />
           <EntitySet Name="PictureSet" EntityType="Food4FunModel.Picture" />
@@ -282,16 +287,17 @@
             <End Role="Dish" EntitySet="DishSet" />
             <End Role="Recipe" EntitySet="RecipeSet" />
           </AssociationSet>
-          <AssociationSet Name="RecipeIngredient" Association="Food4FunModel.RecipeIngredient">
-            <End Role="Recipe" EntitySet="RecipeSet" />
-            <End Role="Ingredient" EntitySet="IngredientSet" />
-          </AssociationSet>
           <EntitySet Name="CountrySet" EntityType="Food4FunModel.Country" />
           <AssociationSet Name="CountryRecipe" Association="Food4FunModel.CountryRecipe">
             <End Role="Country" EntitySet="CountrySet" />
             <End Role="Recipe" EntitySet="RecipeSet" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="IngredientSet" EntityType="Food4FunModel.Ingredient" />
+          <AssociationSet Name="RecipeAmountOf" Association="Food4FunModel.RecipeAmountOf">
+            <End Role="Recipe" EntitySet="RecipeSet" />
+            <End Role="AmountOf" EntitySet="IngredientSet" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Ingredient">
           <Key>
             <PropertyRef Name="IngredientID" />
@@ -300,10 +306,10 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" />
           <NavigationProperty Name="Pictures" Relationship="Food4FunModel.PictureIngredient" FromRole="Ingredient" ToRole="Picture" />
-          <Property Name="FatPr100g" Type="Decimal" Nullable="false" />
-          <Property Name="CarbsPr100g1" Type="Decimal" Nullable="false" />
-          <Property Name="ProteinPr100g2" Type="Decimal" Nullable="false" />
-          <NavigationProperty Name="Recipes" Relationship="Food4FunModel.RecipeIngredient" FromRole="Ingredient" ToRole="Recipe" />
+          <Property Name="FatPr100" Type="Decimal" Nullable="false" />
+          <Property Name="CarbsPr100" Type="Decimal" Nullable="false" />
+          <Property Name="ProteinPr100" Type="Decimal" Nullable="false" />
+          <Property Name="MessureUnit" Nullable="false" Type="Food4FunModel.MessureUnitEnum" />
         </EntityType>
         <EntityType Name="Dish">
           <Key>
@@ -323,6 +329,7 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="Pictures" Relationship="Food4FunModel.PictureMenu" FromRole="Menu" ToRole="Picture" />
           <NavigationProperty Name="Dishes" Relationship="Food4FunModel.MenuDish" FromRole="Menu" ToRole="Dish" />
+          <Property Name="MenuDescription" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
@@ -333,6 +340,7 @@
           <NavigationProperty Name="Menu" Relationship="Food4FunModel.PictureMenu" FromRole="Picture" ToRole="Menu" />
           <NavigationProperty Name="Dish" Relationship="Food4FunModel.PictureDish" FromRole="Picture" ToRole="Dish" />
           <NavigationProperty Name="Ingredient" Relationship="Food4FunModel.PictureIngredient" FromRole="Picture" ToRole="Ingredient" />
+          <Property Name="PictureComment" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="PictureMenu">
           <End Type="Food4FunModel.Picture" Role="Picture" Multiplicity="*" />
@@ -354,8 +362,9 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="Dishes" Relationship="Food4FunModel.DishRecipe" FromRole="Recipe" ToRole="Dish" />
           <Property Name="WorkDescription" Type="String" Nullable="false" />
-          <NavigationProperty Name="Ingredients" Relationship="Food4FunModel.RecipeIngredient" FromRole="Recipe" ToRole="Ingredient" />
           <NavigationProperty Name="Country" Relationship="Food4FunModel.CountryRecipe" FromRole="Recipe" ToRole="Country" />
+          <Property Name="PrepTime" Type="Time" Nullable="false" />
+          <NavigationProperty Name="AmountOfIngrdients" Relationship="Food4FunModel.RecipeAmountOf" FromRole="Recipe" ToRole="AmountOf" />
         </EntityType>
         <Association Name="MenuDish">
           <End Type="Food4FunModel.Menu" Role="Menu" Multiplicity="*" />
@@ -364,10 +373,6 @@
         <Association Name="DishRecipe">
           <End Type="Food4FunModel.Dish" Role="Dish" Multiplicity="*" />
           <End Type="Food4FunModel.Recipe" Role="Recipe" Multiplicity="*" />
-        </Association>
-        <Association Name="RecipeIngredient">
-          <End Type="Food4FunModel.Recipe" Role="Recipe" Multiplicity="*" />
-          <End Type="Food4FunModel.Ingredient" Role="Ingredient" Multiplicity="*" />
         </Association>
         <EntityType Name="Country">
           <Key>
@@ -382,24 +387,24 @@
           <End Type="Food4FunModel.Country" Role="Country" Multiplicity="0..1" />
           <End Type="Food4FunModel.Recipe" Role="Recipe" Multiplicity="*" />
         </Association>
+        <EnumType Name="MessureUnitEnum">
+          <Member Name="ml" />
+          <Member Name="g" />
+        </EnumType>
+        <EntityType Name="AmountOf" BaseType="Food4FunModel.Ingredient">
+          <Property Name="Amount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Recipe" Relationship="Food4FunModel.RecipeAmountOf" FromRole="AmountOf" ToRole="Recipe" />
+        </EntityType>
+        <Association Name="RecipeAmountOf">
+          <End Type="Food4FunModel.Recipe" Role="Recipe" Multiplicity="1" />
+          <End Type="Food4FunModel.AmountOf" Role="AmountOf" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Food4FunModelStoreContainer" CdmEntityContainer="Food4FunModelContainer">
-    <EntitySetMapping Name="IngredientSet">
-      <EntityTypeMapping TypeName="IsTypeOf(Food4FunModel.Ingredient)">
-        <MappingFragment StoreEntitySet="IngredientSet">
-          <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="FatPr100g" ColumnName="FatPr100g" />
-          <ScalarProperty Name="CarbsPr100g1" ColumnName="CarbsPr100g1" />
-          <ScalarProperty Name="ProteinPr100g2" ColumnName="ProteinPr100g2" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="DishSet">
       <EntityTypeMapping TypeName="IsTypeOf(Food4FunModel.Dish)">
         <MappingFragment StoreEntitySet="DishSet">
@@ -413,6 +418,7 @@
         <MappingFragment StoreEntitySet="MenuSet">
           <ScalarProperty Name="MenuID" ColumnName="MenuID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MenuDescription" ColumnName="MenuDescription" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -421,6 +427,7 @@
         <MappingFragment StoreEntitySet="PictureSet">
           <ScalarProperty Name="PictureID" ColumnName="PictureID" />
           <ScalarProperty Name="PictureUrl" ColumnName="PictureUrl" />
+          <ScalarProperty Name="PictureComment" ColumnName="PictureComment" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -430,6 +437,7 @@
           <ScalarProperty Name="RecipeID" ColumnName="RecipeID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="WorkDescription" ColumnName="WorkDescription" />
+          <ScalarProperty Name="PrepTime" ColumnName="PrepTime" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -439,6 +447,25 @@
           <ScalarProperty Name="CountryID" ColumnName="CountryID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IngredientSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Food4FunModel.Ingredient)">
+        <MappingFragment StoreEntitySet="IngredientSet">
+          <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="FatPr100" ColumnName="FatPr100" />
+          <ScalarProperty Name="CarbsPr100" ColumnName="CarbsPr100" />
+          <ScalarProperty Name="ProteinPr100" ColumnName="ProteinPr100" />
+          <ScalarProperty Name="MessureUnit" ColumnName="MessureUnit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Food4FunModel.AmountOf)">
+        <MappingFragment StoreEntitySet="IngredientSet_AmountOf">
+          <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -485,14 +512,6 @@
         <ScalarProperty Name="RecipeID" ColumnName="Recipes_RecipeID" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="RecipeIngredient" TypeName="Food4FunModel.RecipeIngredient" StoreEntitySet="RecipeIngredient">
-      <EndProperty Name="Recipe">
-        <ScalarProperty Name="RecipeID" ColumnName="Recipes_RecipeID" />
-      </EndProperty>
-      <EndProperty Name="Ingredient">
-        <ScalarProperty Name="IngredientID" ColumnName="Ingredients_IngredientID" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="CountryRecipe" TypeName="Food4FunModel.CountryRecipe" StoreEntitySet="RecipeSet">
       <EndProperty Name="Country">
         <ScalarProperty Name="CountryID" ColumnName="Country_CountryID" />
@@ -501,6 +520,14 @@
         <ScalarProperty Name="RecipeID" ColumnName="RecipeID" />
       </EndProperty>
       <Condition ColumnName="Country_CountryID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RecipeAmountOf" TypeName="Food4FunModel.RecipeAmountOf" StoreEntitySet="IngredientSet_AmountOf">
+      <EndProperty Name="Recipe">
+        <ScalarProperty Name="RecipeID" ColumnName="Recipe_RecipeID" />
+      </EndProperty>
+      <EndProperty Name="AmountOf">
+        <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
+      </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>

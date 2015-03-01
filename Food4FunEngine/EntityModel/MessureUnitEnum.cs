@@ -10,21 +10,10 @@
 namespace Food4FunEngine.EntityModel
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Menu
+    public enum MessureUnitEnum : int
     {
-        public Menu()
-        {
-            this.Pictures = new HashSet<Picture>();
-            this.Dishes = new HashSet<Dish>();
-        }
-    
-        public System.Guid MenuID { get; private set; }
-        public string Name { get; set; }
-        public string MenuDescription { get; set; }
-    
-        public virtual ICollection<Picture> Pictures { get; set; }
-        public virtual ICollection<Dish> Dishes { get; set; }
+        ml = 0,
+        g = 1
     }
 }

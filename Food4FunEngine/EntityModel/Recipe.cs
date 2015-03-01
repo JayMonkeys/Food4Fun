@@ -17,15 +17,16 @@ namespace Food4FunEngine.EntityModel
         public Recipe()
         {
             this.Dishes = new HashSet<Dish>();
-            this.Ingredients = new HashSet<Ingredient>();
+            this.AmountOfIngrdients = new HashSet<AmountOf>();
         }
     
         public System.Guid RecipeID { get; private set; }
         public string Name { get; set; }
         public string WorkDescription { get; set; }
+        public System.TimeSpan PrepTime { get; set; }
     
         public virtual ICollection<Dish> Dishes { get; set; }
-        public virtual ICollection<Ingredient> Ingredients { get; set; }
         public virtual Country Country { get; set; }
+        public virtual ICollection<AmountOf> AmountOfIngrdients { get; set; }
     }
 }
