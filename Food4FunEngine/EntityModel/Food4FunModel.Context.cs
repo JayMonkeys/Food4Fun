@@ -13,10 +13,10 @@ namespace Food4FunEngine.EntityModel
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Model1Container : DbContext
+    public partial class Food4FunModelContainer : DbContext
     {
-        public Model1Container()
-            : base("name=Model1Container")
+        public Food4FunModelContainer()
+            : base("name=Food4FunModelContainer")
         {
         }
     
@@ -25,7 +25,11 @@ namespace Food4FunEngine.EntityModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Recipe> RecipeSet { get; set; }
         public virtual DbSet<Ingredient> IngredientSet { get; set; }
+        public virtual DbSet<Dish> DishSet { get; set; }
+        public virtual DbSet<Menu> MenuSet { get; set; }
+        public virtual DbSet<Picture> PictureSet { get; set; }
+        public virtual DbSet<Recipe> RecipeSet { get; set; }
+        public virtual DbSet<Country> CountrySet { get; set; }
     }
 }

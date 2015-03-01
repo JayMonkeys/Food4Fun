@@ -12,20 +12,20 @@ namespace Food4FunEngine.EntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Recipe
+    public partial class Dish
     {
-        public Recipe()
+        public Dish()
         {
-            this.Dishes = new HashSet<Dish>();
-            this.Ingredients = new HashSet<Ingredient>();
+            this.Pictures = new HashSet<Picture>();
+            this.Menues = new HashSet<Menu>();
+            this.Recipes = new HashSet<Recipe>();
         }
     
-        public System.Guid RecipeID { get; private set; }
+        public System.Guid DishID { get; private set; }
         public string Name { get; set; }
-        public string WorkDescription { get; set; }
     
-        public virtual ICollection<Dish> Dishes { get; set; }
-        public virtual ICollection<Ingredient> Ingredients { get; set; }
-        public virtual Country Country { get; set; }
+        public virtual ICollection<Picture> Pictures { get; set; }
+        public virtual ICollection<Menu> Menues { get; set; }
+        public virtual ICollection<Recipe> Recipes { get; set; }
     }
 }

@@ -10,12 +10,19 @@
 namespace Food4FunEngine.EntityModel
 {
     using System;
+    using System.Collections.Generic;
     
-    public enum RecipeOriginCountry : int
+    public partial class Country
     {
-        Denmark = 0,
-        Italy = 1,
-        France = 2,
-        India = 3
+        public Country()
+        {
+            this.Recipes = new HashSet<Recipe>();
+        }
+    
+        public System.Guid CountryID { get; private set; }
+        public string Name { get; set; }
+        public string ShortName { get; set; }
+    
+        public virtual ICollection<Recipe> Recipes { get; set; }
     }
 }

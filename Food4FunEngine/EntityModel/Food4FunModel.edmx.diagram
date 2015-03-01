@@ -4,10 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="911ffac71dcc4c7b858ef3acedbd3119" Name="Diagram1" >
-        <EntityTypeShape EntityType="Model1.Recipe" Width="1.5" PointX="6.125" PointY="1.875" />
-        <EntityTypeShape EntityType="Model1.Ingredient" Width="1.5" PointX="9.625" PointY="1.875" />
-        <AssociationConnector Association="Model1.RecipeIngredient" />
+      <Diagram DiagramId="248f9c6018554efa928c866359877ba4" Name="Food4FunDiagram" >
+        <EntityTypeShape EntityType="Food4FunModel.Ingredient" Width="1.5" PointX="8" PointY="3.125" />
+        <EntityTypeShape EntityType="Food4FunModel.Dish" Width="1.5" PointX="3" PointY="3.125" />
+        <EntityTypeShape EntityType="Food4FunModel.Menu" Width="1.5" PointX="0.5" PointY="3.125" />
+        <EntityTypeShape EntityType="Food4FunModel.Picture" Width="1.5" PointX="3" PointY="0.5" />
+        <AssociationConnector Association="Food4FunModel.PictureMenu" />
+        <AssociationConnector Association="Food4FunModel.PictureDish" />
+        <AssociationConnector Association="Food4FunModel.PictureIngredient" />
+        <EntityTypeShape EntityType="Food4FunModel.Recipe" Width="1.5" PointX="5.5" PointY="3.125" />
+        <AssociationConnector Association="Food4FunModel.MenuDish" />
+        <AssociationConnector Association="Food4FunModel.DishRecipe" />
+        <AssociationConnector Association="Food4FunModel.RecipeIngredient" />
+        <EntityTypeShape EntityType="Food4FunModel.Country" Width="1.5" PointX="5.5" PointY="6.125" />
+        <AssociationConnector Association="Food4FunModel.CountryRecipe" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

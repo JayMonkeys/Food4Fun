@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityModel\Country.cs">
+      <DependentUpon>Food4FunModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\Dish.cs">
+      <DependentUpon>Food4FunModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\Food4FunModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -66,15 +72,15 @@
     <Compile Include="EntityModel\Ingredient.cs">
       <DependentUpon>Food4FunModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityModel\Menu.cs">
+      <DependentUpon>Food4FunModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\Picture.cs">
+      <DependentUpon>Food4FunModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\Recipe.cs">
       <DependentUpon>Food4FunModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModel\RecipeOriginCountry.cs">
-      <DependentUpon>Food4FunModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="F4fIngredient.cs" />
-    <Compile Include="F4fMenu.cs" />
-    <Compile Include="F4fRecipe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +106,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EntityModel\Food4FunModel.edmx.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
