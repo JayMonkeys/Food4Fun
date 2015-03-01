@@ -48,10 +48,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityModel\Food4FunModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Food4FunModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\Food4FunModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Food4FunModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\Food4FunModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Food4FunModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\Ingredient.cs">
+      <DependentUpon>Food4FunModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\Recipe.cs">
+      <DependentUpon>Food4FunModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\RecipeOriginCountry.cs">
+      <DependentUpon>Food4FunModel.tt</DependentUpon>
     </Compile>
     <Compile Include="F4fIngredient.cs" />
     <Compile Include="F4fMenu.cs" />
@@ -64,10 +83,23 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Food4FunModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="EntityModel\Food4FunModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Food4FunModel.Context.cs</LastGenOutput>
+      <DependentUpon>Food4FunModel.edmx</DependentUpon>
+    </None>
     <None Include="EntityModel\Food4FunModel.edmx.diagram">
       <DependentUpon>Food4FunModel.edmx</DependentUpon>
     </None>
+    <None Include="EntityModel\Food4FunModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Food4FunModel.cs</LastGenOutput>
+      <DependentUpon>Food4FunModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
