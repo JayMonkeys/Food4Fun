@@ -13,7 +13,7 @@ namespace Food4FunEngine
         {
             get
             {
-                throw new System.NotImplementedException();//hej et eller andet
+                throw new System.NotImplementedException();
             }
             set
             {
