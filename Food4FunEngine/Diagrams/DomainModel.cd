@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Food4FunEngine.F4fMenu">
+    <Position X="2.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>F4fMenu.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="F4fRecipes" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Food4FunEngine.F4fRecipe">
+    <Position X="6" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAgAAAAAAAAAAAAAACAAAAAIAAAAAAAAAAAAQ=</HashCode>
+      <FileName>F4fRecipe.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="F4fIngredient" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Food4FunEngine.F4fIngredient">
+    <Position X="9.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAgAAAAAAAAABAAAACAAAAAIAAmAAAAAAAAAA=</HashCode>
+      <FileName>F4fIngredient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
