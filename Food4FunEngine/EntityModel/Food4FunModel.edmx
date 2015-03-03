@@ -306,9 +306,9 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" />
           <NavigationProperty Name="Pictures" Relationship="Food4FunModel.PictureIngredient" FromRole="Ingredient" ToRole="Picture" />
-          <Property Name="FatPr100" Type="Decimal" Nullable="false" />
-          <Property Name="CarbsPr100" Type="Decimal" Nullable="false" />
-          <Property Name="ProteinPr100" Type="Decimal" Nullable="false" />
+          <Property Name="FatPrKg" Type="Decimal" Nullable="false" />
+          <Property Name="CarbsPrKg" Type="Decimal" Nullable="false" />
+          <Property Name="ProteinPrKg" Type="Decimal" Nullable="false" />
           <Property Name="MessureUnit" Nullable="false" Type="Food4FunModel.MessureUnitEnum" />
         </EntityType>
         <EntityType Name="Dish">
@@ -456,9 +456,9 @@
           <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="FatPr100" ColumnName="FatPr100" />
-          <ScalarProperty Name="CarbsPr100" ColumnName="CarbsPr100" />
-          <ScalarProperty Name="ProteinPr100" ColumnName="ProteinPr100" />
+          <ScalarProperty Name="FatPrKg" ColumnName="FatPr100" />
+          <ScalarProperty Name="CarbsPrKg" ColumnName="CarbsPr100" />
+          <ScalarProperty Name="ProteinPrKg" ColumnName="ProteinPr100" />
           <ScalarProperty Name="MessureUnit" ColumnName="MessureUnit" />
         </MappingFragment>
       </EntityTypeMapping>

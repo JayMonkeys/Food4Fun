@@ -22,9 +22,9 @@ namespace Food4FunEngine.EntityModel
         public System.Guid IngredientID { get; private set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public decimal FatPr100 { get; set; }
-        public decimal CarbsPr100 { get; set; }
-        public decimal ProteinPr100 { get; set; }
+        public decimal FatPrKg { get; set; }
+        public decimal CarbsPrKg { get; set; }
+        public decimal ProteinPrKg { get; set; }
         public MessureUnitEnum MessureUnit { get; set; }
     
         public virtual ICollection<Picture> Pictures { get; set; }
