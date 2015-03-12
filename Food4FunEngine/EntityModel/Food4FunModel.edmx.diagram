@@ -15,7 +15,7 @@
         <EntityTypeShape EntityType="Food4FunModel.Recipe" Width="1.5" PointX="5.875" PointY="3.125" />
         <AssociationConnector Association="Food4FunModel.MenuDish" />
         <AssociationConnector Association="Food4FunModel.DishRecipe" />
-        <EntityTypeShape EntityType="Food4FunModel.Country" Width="1.5" PointX="5.875" PointY="6.125" />
+        <EntityTypeShape EntityType="Food4FunModel.Country" Width="1.5" PointX="5.875" PointY="6.125" IsExpanded="true" />
         <AssociationConnector Association="Food4FunModel.CountryRecipe" />
         <EntityTypeShape EntityType="Food4FunModel.AmountOf" Width="1.5" PointX="8.375" PointY="3.375" />
         <InheritanceConnector EntityType="Food4FunModel.AmountOf" />

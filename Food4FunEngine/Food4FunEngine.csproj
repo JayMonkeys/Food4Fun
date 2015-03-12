@@ -95,6 +95,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Food4FunModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="ConnectionStrings.config" />
     <None Include="EntityModel\Food4FunModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Food4FunModel.Context.cs</LastGenOutput>

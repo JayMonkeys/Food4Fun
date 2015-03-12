@@ -107,9 +107,9 @@
     <Property Name="IngredientID" Type="uniqueidentifier" StoreGeneratedPattern="Computed" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="FatPr100" Type="decimal" Nullable="false" />
-    <Property Name="CarbsPr100" Type="decimal" Nullable="false" />
-    <Property Name="ProteinPr100" Type="decimal" Nullable="false" />
+    <Property Name="FatPrKg" Type="decimal" Nullable="false" />
+    <Property Name="CarbsPrKg" Type="decimal" Nullable="false" />
+    <Property Name="ProteinPrKg" Type="decimal" Nullable="false" />
     <Property Name="MessureUnit" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="IngredientSet_AmountOf">
@@ -456,9 +456,9 @@
           <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="FatPrKg" ColumnName="FatPr100" />
-          <ScalarProperty Name="CarbsPrKg" ColumnName="CarbsPr100" />
-          <ScalarProperty Name="ProteinPrKg" ColumnName="ProteinPr100" />
+          <ScalarProperty Name="FatPrKg" ColumnName="FatPrKg" />
+          <ScalarProperty Name="CarbsPrKg" ColumnName="CarbsPrKg" />
+          <ScalarProperty Name="ProteinPrKg" ColumnName="ProteinPrKg" />
           <ScalarProperty Name="MessureUnit" ColumnName="MessureUnit" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/01/2015 23:22:34
--- Generated from EDMX file: C:\Users\Kim Jan Andersen\Desktop\Food4Fun\Food4FunEngine\EntityModel\Food4FunModel.edmx
+-- Date Created: 03/03/2015 22:16:13
+-- Generated from EDMX file: C:\Users\Kent\Dropbox\projects\Food4Fun\Food4FunEngine\EntityModel\Food4FunModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -41,6 +41,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_CountryRecipe]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[RecipeSet] DROP CONSTRAINT [FK_CountryRecipe];
 GO
+IF OBJECT_ID(N'[dbo].[FK_RecipeAmountOf]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[IngredientSet_AmountOf] DROP CONSTRAINT [FK_RecipeAmountOf];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AmountOf_inherits_Ingredient]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[IngredientSet_AmountOf] DROP CONSTRAINT [FK_AmountOf_inherits_Ingredient];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -63,6 +69,9 @@ IF OBJECT_ID(N'[dbo].[CountrySet]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[IngredientSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[IngredientSet];
+GO
+IF OBJECT_ID(N'[dbo].[IngredientSet_AmountOf]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[IngredientSet_AmountOf];
 GO
 IF OBJECT_ID(N'[dbo].[MenuDish]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MenuDish];
@@ -124,9 +133,9 @@ CREATE TABLE [dbo].[IngredientSet] (
     [IngredientID] uniqueidentifier  NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
-    [FatPr100] decimal(18,0)  NOT NULL,
-    [CarbsPr100] decimal(18,0)  NOT NULL,
-    [ProteinPr100] decimal(18,0)  NOT NULL,
+    [FatPrKg] decimal(18,0)  NOT NULL,
+    [CarbsPrKg] decimal(18,0)  NOT NULL,
+    [ProteinPrKg] decimal(18,0)  NOT NULL,
     [MessureUnit] int  NOT NULL
 );
 GO
