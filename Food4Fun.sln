@@ -5,25 +5,25 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Food4FunEngine", "Food4FunEngine\Food4FunEngine.csproj", "{FBE7BF3B-1AAD-4F27-B550-8760EB2DC401}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSite2", "http://localhost:3222", "{8AA4A86F-62C2-4564-9E54-19102784D938}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Food4FunWebSite", "http://localhost:6877", "{FC3B948D-06E9-41CE-8D08-CDB701B550B0}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_3222"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\Documents\Visual Studio 2013\WebSites\WebSite2\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3222\"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_6877"
+		Debug.AspNetCompiler.PhysicalPath = "Food4FunWebSite\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_6877\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_3222"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\Documents\Visual Studio 2013\WebSites\WebSite2\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3222\"
+		Release.AspNetCompiler.VirtualPath = "/localhost_6877"
+		Release.AspNetCompiler.PhysicalPath = "Food4FunWebSite\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_6877\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "..\..\..\Documents\Visual Studio 2013\WebSites\WebSite2\"
+		SlnRelativePath = "Food4FunWebSite\"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
@@ -37,10 +37,10 @@ Global
 		{FBE7BF3B-1AAD-4F27-B550-8760EB2DC401}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBE7BF3B-1AAD-4F27-B550-8760EB2DC401}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBE7BF3B-1AAD-4F27-B550-8760EB2DC401}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8AA4A86F-62C2-4564-9E54-19102784D938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8AA4A86F-62C2-4564-9E54-19102784D938}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8AA4A86F-62C2-4564-9E54-19102784D938}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{8AA4A86F-62C2-4564-9E54-19102784D938}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{FC3B948D-06E9-41CE-8D08-CDB701B550B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC3B948D-06E9-41CE-8D08-CDB701B550B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC3B948D-06E9-41CE-8D08-CDB701B550B0}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC3B948D-06E9-41CE-8D08-CDB701B550B0}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
