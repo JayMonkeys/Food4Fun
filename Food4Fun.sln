@@ -5,6 +5,28 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Food4FunEngine", "Food4FunEngine\Food4FunEngine.csproj", "{FBE7BF3B-1AAD-4F27-B550-8760EB2DC401}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Food4FunWebSite(1)", "http://localhost:28385", "{49DCD383-D074-4558-B11A-CF6884E0F2FA}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_28385"
+		Debug.AspNetCompiler.PhysicalPath = "Food4FunWebSite\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_28385\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_28385"
+		Release.AspNetCompiler.PhysicalPath = "Food4FunWebSite\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_28385\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "Food4FunWebSite\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +37,10 @@ Global
 		{FBE7BF3B-1AAD-4F27-B550-8760EB2DC401}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBE7BF3B-1AAD-4F27-B550-8760EB2DC401}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBE7BF3B-1AAD-4F27-B550-8760EB2DC401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49DCD383-D074-4558-B11A-CF6884E0F2FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49DCD383-D074-4558-B11A-CF6884E0F2FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49DCD383-D074-4558-B11A-CF6884E0F2FA}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{49DCD383-D074-4558-B11A-CF6884E0F2FA}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
